@@ -1,0 +1,829 @@
+/* Reset default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base body styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Main app container - dark gradient background */
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  padding: 40px 60px; /* Increased padding for desktop */
+}
+
+/* Content container - much wider */
+.container {
+  max-width: 1800px; /* Much wider container */
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ===== HEADER SECTION ===== */
+.header {
+  text-align: center;
+  margin-bottom: 40px; /* Reduced from 60px */
+  padding: 40px 20px;
+}
+
+/* Main title styling */
+.title {
+  font-size: 4.5rem; /* Larger title */
+  font-weight: 800;
+  color: white;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+
+/* Gradient text effect for "Nexus" */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtitle below main title */
+.subtitle {
+  color: #a0aec0;
+  font-size: 1.3rem; /* Larger subtitle */
+  font-weight: 300;
+}
+
+/* ===== SEARCH SECTION ===== */
+.search-container {
+  margin: 0 auto 30px; /* Changed from 40px */
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  max-width: 700px; /* Smaller, more centered */
+  order: 1; /* This keeps it before history */
+}
+
+/* Search input field - much wider */
+.search-input {
+  flex: 1;
+  padding: 20px 32px; /* Bigger padding */
+  font-size: 1.1rem; /* Larger text */
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  color: white;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+/* Placeholder text color */
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Input focus state - glowing effect */
+.search-input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Search button */
+.search-button {
+  padding: 20px 36px; /* Changed from 20px 48px */
+  font-size: 1rem; /* Changed from 1.1rem */
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* Button hover effect - lift up */
+.search-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Button click effect - press down */
+.search-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Disabled button state */
+.search-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Loading spinner animation */
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Spinner rotation animation */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== ERROR MESSAGE ===== */
+.error-message {
+  max-width: 100%;
+  margin: 0 0 20px 0;
+  padding: 20px 32px;
+  background: rgba(239, 68, 68, 0.2);
+  border: 2px solid rgba(239, 68, 68, 0.4);
+  border-radius: 16px;
+  color: #fca5a5;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: slideIn 0.3s ease;
+  font-size: 1.05rem;
+}
+
+/* ===== CRYPTO DATA CARD ===== */
+.crypto-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 60px; /* Much more padding */
+  backdrop-filter: blur(10px);
+  animation: slideIn 0.4s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Slide in animation for cards */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Crypto header - name and price layout */
+.crypto-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+/* Cryptocurrency name */
+.crypto-name {
+  font-size: 3.5rem; /* Much larger */
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+}
+
+/* Cryptocurrency symbol badge */
+.crypto-symbol {
+  font-size: 1.4rem;
+  color: #a0aec0;
+  text-transform: uppercase;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+/* Current price display - gradient text */
+.crypto-price {
+  font-size: 3.5rem; /* Much larger */
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 24-hour change badge */
+.change-badge {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 32px;
+}
+
+/* Positive price change - green */
+.change-badge.positive {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Negative price change - red */
+.change-badge.negative {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* ===== STATISTICS GRID ===== */
+/* Grid layout - 4 columns on desktop */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns */
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* Individual stat card */
+.stat-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 28px;
+  transition: all 0.3s ease;
+}
+
+/* Stat card hover effect - lift and brighten */
+.stat-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Stat label text */
+.stat-label {
+  color: #a0aec0;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Stat value text */
+.stat-value {
+  color: white;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* Last updated timestamp */
+.last-updated {
+  text-align: center;
+  color: #718096;
+  font-size: 1rem;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== EMPTY STATE ===== */
+/* Displayed when no crypto data is shown */
+.empty-state {
+  text-align: center;
+  padding: 120px 20px;
+  color: #a0aec0;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Empty state icon */
+.empty-icon {
+  font-size: 5rem;
+  margin-bottom: 24px;
+  opacity: 0.5;
+}
+
+/* Empty state text */
+.empty-state p {
+  font-size: 1.3rem;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+/* Tablet */
+@media (max-width: 1200px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on tablet */
+  }
+  
+  .title {
+    font-size: 3.5rem;
+  }
+  
+  .crypto-name,
+  .crypto-price {
+    font-size: 2.8rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .app {
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .crypto-name,
+  .crypto-price {
+    font-size: 2rem;
+  }
+
+
+
+
+  .search-container {
+  margin: 0 auto 30px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  max-width: 1000px; /* Changed from 700px */
+}
+
+  .stats-grid {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+  }
+
+  .crypto-card {
+    padding: 24px;
+  }
+}
+
+
+
+
+
+/* ===== SEARCH HISTORY ===== */
+.history-container {
+  margin-bottom: 30px;
+  text-align: center;
+  order: 2; /* This moves it after search */
+}
+
+.history-label {
+  color: #a0aec0;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.history-chips {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.history-chip {
+  padding: 8px 20px;
+  background: rgba(102, 126, 234, 0.15);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 20px;
+  color: #a5b4fc;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+}
+
+.history-chip:hover {
+  background: rgba(102, 126, 234, 0.25);
+  border-color: rgba(102, 126, 234, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+/* ===== AUTOCOMPLETE SUGGESTIONS ===== */
+.search-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.suggestions-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 8px;
+  background: rgba(30, 27, 75, 0.95);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  max-height: 320px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.suggestion-item {
+  padding: 14px 20px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  text-transform: capitalize;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background: rgba(102, 126, 234, 0.2);
+  padding-left: 24px;
+}
+
+.suggestion-icon {
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+
+/* Custom scrollbar for suggestions */
+.suggestions-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+.suggestions-dropdown::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.suggestions-dropdown::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.3);
+  border-radius: 10px;
+}
+
+.suggestions-dropdown::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 126, 234, 0.5);
+}
+
+/* ===== WATCHLIST SECTION ===== */
+.watchlist-section {
+  margin: 40px 0;
+  animation: slideIn 0.4s ease;
+}
+
+.watchlist-title {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.watchlist-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.watchlist-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.watchlist-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(8px);
+  border-color: rgba(102, 126, 234, 0.4);
+}
+
+.watchlist-item-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.watchlist-item-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: white;
+}
+
+.watchlist-item-symbol {
+  font-size: 0.95rem;
+  color: #a0aec0;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.watchlist-item-center {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.watchlist-item-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.watchlist-item-change {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 8px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.watchlist-item-change.positive {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.watchlist-item-change.negative {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.watchlist-remove-btn {
+  background: transparent; /* Changed from rgba(239, 68, 68, 0.2) */
+  border: 0px solid rgba(255, 255, 255, 0.2); /* Changed to subtle white border */
+  color: #a0aec0; /* Changed to gray */
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+  margin-left: 16px;
+}
+
+.watchlist-remove-btn:hover {
+  background: rgba(255, 255, 255, 0.1); /* Changed to subtle white on hover */
+  border-color: rgba(239, 68, 68, 0.5); /* Red border only on hover */
+  color: #fca5a5; /* Red color only on hover */
+  transform: scale(1.1);
+}
+This makes the X button transparent by default and only shows red when you hover over it.
+
+
+
+
+
+.watchlist-remove-btn:hover {
+  background: rgba(239, 68, 68, 0.4);
+  transform: scale(1.1);
+}
+
+/* Watchlist button styles */
+.watchlist-button {
+  padding: 14px 32px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.watchlist-button.add {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.watchlist-button.add:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+}
+
+.watchlist-button.remove {
+  background: rgba(239, 68, 68, 0.2);
+  border: 2px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+
+.watchlist-button.remove:hover {
+  background: rgba(239, 68, 68, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ===== COMPARISON SECTION ===== */
+.compare-section {
+  margin: 40px 0;
+  animation: slideIn 0.4s ease;
+}
+
+.compare-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.compare-title {
+  font-size: 2rem;
+  color: white;
+}
+
+.clear-compare-btn {
+  padding: 10px 24px;
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-compare-btn:hover {
+  background: rgba(239, 68, 68, 0.3);
+  transform: translateY(-2px);
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.compare-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 28px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.compare-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.compare-remove-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #a0aec0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.compare-remove-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+}
+
+.compare-crypto-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.compare-symbol {
+  display: inline-block;
+  font-size: 1rem;
+  color: #a0aec0;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.compare-price {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.compare-change {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+.compare-change.positive {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.compare-change.negative {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.compare-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.compare-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.compare-stat-label {
+  color: #a0aec0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.compare-stat-value {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Compare button on crypto card */
+.compare-button {
+  padding: 14px 32px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.compare-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
